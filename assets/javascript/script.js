@@ -40,11 +40,13 @@ $( "#mario" ).click(function(){
 
 	}
 	else if ($("#mario").hasClass("inOpponentChoices")){
-
+		$("#opponentContainer").addClass("show");
 		$("#mario").appendTo("#opponentRow");
 		$("#mario").removeClass("inOpponentChoices");
 	 	$("#mario").addClass("inOpponent");
+	 	$("#selectOpponent").removeClass("show");
 	}
+	else if ($("#mario").hasClass("inOpponentChoices")
 	else {
 		return nothing;
 	}
