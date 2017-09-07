@@ -18,23 +18,23 @@
 			<div id="characterChoices" class="h2"> Characters Choices</div>	
 		</div>	
 		<div class="row">
-			<div class="col-sm-6">
-				<button id="mario">
+			<div id="characterChoicesRow" class="col-sm-6">
+				<button id="mario" class="inCharacterChoices">
 					<span id="marioName"></span>
 					<div class="marioImg"></div>
 					<span id="hpMario"></span>
 				</button>
-				<button id="luigi">
+				<button id="luigi" class="inCharacterChoices">
 					<span id="luigiName"></span>
 					<div  class="luigiImg"></div>
 					<span id="hpLuigi"></span>
 				</button>				
-				<button id="bowser">
+				<button id="bowser" class="inCharacterChoices">
 					<span id="bowserName"></span>
 					<div class="bowserImg"></div>
 					<span id="hpBowser"></span>
 				</button>
-				<button id="toad">
+				<button id="toad" class="inCharacterChoices">
 					<span id="toadName"></span>
 					<div class="toadImg"></div>
 					<span id="hpToad"></span>
@@ -42,7 +42,7 @@
 			</div>
 			<div  class="col-sm-2 "></div>
 			<div class ="col-sm-2">
-				<div id="selectCharacter" class="row alert-success center-text">
+				<div id="selectCharacter" class="row alert-success center-text p-2">
 					<h2>Select a Character</h2>
 				</div>
 			
@@ -58,7 +58,7 @@
 			</div>
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2">
-				<div id="selectOpponent" class="row alert-danger center-text hide">
+				<div id="selectOpponent" class="row alert-danger center-text hide p-2">
 					<h2>Select an Opponent</h2>
 				</div>					
 			</div>
@@ -76,15 +76,17 @@
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2"></div>
 		</div>
-				<div class="row ">
-			<div id="opponent" class="h2 hide"> Opponent</div>
-		</div>
-		<div id="attackSelectionRow" class="row hide">
-			<div class="col-sm-6">
+		<div id="opponentContainer" class="container hide">
+			<div class="row ">
+				<div id="opponent" class="h2"> Opponent</div>
 			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
+			<div  class="row">
+				<div id="opponentRow" class="col-sm-6">
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
+			</div>
 		</div>
 	</div>
 	<script src="assets/javascript/script.js" type="text/javascript"></script>
