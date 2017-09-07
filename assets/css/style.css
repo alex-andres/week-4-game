@@ -1,0 +1,36 @@
+body{
+	background-color: rgb(57,247,0);
+	background-image: url(../images/Chateau_de_peach.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.marioImg{
+	background-image: url(../images/mario.png);
+	width: 100px;
+	height: 100px
+}
+.luigiImg{
+	background-image: url(../images/luigi.png);
+	width: 100px;
+	height: 100px
+}
+.bowserImg{
+	background-image: url(../images/bowser.png);
+	width: 100px;
+	height: 100px
+}
+.toadImg{
+	background-image: url(../images/toad.png);
+	width: 100px;
+	height: 100px
+}
+.hide{
+	display: none;
+}
+#bowserText{
+	font-back
+}
+.show{
+	display: block;
+}
