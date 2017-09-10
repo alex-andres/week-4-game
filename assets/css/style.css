@@ -34,3 +34,7 @@ body{
 .show{
 	display: block;
 }
+.attackButton{
+	width: 80px;
+	height: 30px;
+}
