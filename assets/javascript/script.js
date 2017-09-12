@@ -5,239 +5,154 @@ var characters = [
 	{name : "Toad", id: '"#toad"', hp : 85, attack1 : 9, attack2 : 7, counterattack : 13}
 ];
 var nameId =[ "#marioName", "#luigiName", "#bowserName", "#toadName", ];
-var hpId =["#hpMario", "#hpLuigi", "#hpBowser", "#hpToad"]
-var displayedCharacterNames = ["Mario", "Luigi", "Bowser", "toad"]
+var hpId =["#hpMario", "#hpLuigi", "#hpBowser", "#hpToad"];
+var displayedCharacterNames = ["Mario", "Luigi", "Bowser", "toad"];
 
 var mario ={
 	name : "Mario",
 	id : '"#mario"',
+	hpId: "#hpMario",
 	hp : 100, 
 	attack1 : 10, 
 	attack2 : 15, 
-	counterattack : 5
+	counterAttack : 5
 };
 var luigi = {
 	name : "Luigi", 
-	id: '"#luigi"', 
+	id: '"#luigi"',
+	hpId: "#hpLuigi",
 	hp : 90, 
 	attack1 : 8, 
 	attack2 : 12, 
-	counterattack : 4
+	counterAttack : 4
 };
 var bowser = {
 	name : "Bowser", 
-	id: '"#bowser"', 
+	id: '"#bowser"',
+	hpId: "#hpBowser",	 
 	hp : 130, 
 	attack1 : 6, 
 	attack2 : 20, 
-	counterattack : 18
+	counterAttack : 18
 };
 var toad ={
 	name : "Toad", 
-	id: '"#toad"', 
+	id: '"#toad"',
+	hpId: "#hpToad", 
 	hp : 85, 
 	attack1 : 9, 
 	attack2 : 7, 
-	counterattack : 13
+	counterAttack : 13
 };
-var characterList = ["mario", "luigi", "bowser", "toad"]
-var bolStart = true
+var characterList = ["mario", "luigi", "bowser", "toad"];
+var bolYourCharacter = true;
+var bolOpponent = true;
 var selectCharacter; 
-function removeClickedCharacter() {
-    selectCharacter = this.id;
-    var index = characterList.indexOf(selectCharacter)
-    characterList.splice(index, 1);
-}
-//set up buttons for characters
-// function hideOpponents(){
-// for (var i = 0; i < nameId.length; i++) {
-// 	$(nameId[i]).click(function(){
-// 	  	nameId.splice([i],1);
-// 	  	console.log(nameId);
-// 	  	$(nameId + "#selectCharacter" ).addClass("hide");
-// 	  	$("#selectCharacter").addClass("show");	
-// 	  	}
-	  
-// 	)
-// };
-// };
-// hideOpponents();
-// console.log(nameId);
+var selectOpponent;
+var selectOpponentObject = eval(selectOpponent);
+var selectCharacterObject = eval(selectCharacter);
+var bolGame = true;
+var bolLevel1 = true;
+var bolLevel2 = false;
+var bolLevel3 =false;
+var opponentHp;
+function makeId(){
+	for(var i=0;i<characterList.length;i++){
+	    characterList[i]="#"+characterList[i];
+	}
+};
 
 for (var i = 0; i < 4; i++) {
-		$(nameId[i]).text(characters[i].name);
-};	
-function updateHealth(){
-for (var i = 0; i < 4; i++) {
-		$(hpId[i]).text(characters[i].hp);
-	};
+    $(nameId[i]).text(characters[i].name);
+};
+
+function updateHealth() {
+    for (var i = 0; i < 4; i++) {
+        $(hpId[i]).text(characters[i].hp);
+    };
 };
 updateHealth();
+
+
 //function that removes clicked character from character list array
-
-$(".character").on("click", function() {
-    if (bolStart == true) {
-
+function chooseCharacter(){
+$("#characterChoicesRow").on("click", (".character"), function() {
 	selectCharacter = this.id;
+	console.log(selectCharacter);	
     var index = characterList.indexOf(selectCharacter);
     characterList.splice(index, 1);
-	}
+    console.log(characterList);
+    makeId();
+    $("#selectOpponent, #opponentChoices").addClass("show");
+ 	$("#characterChoices").html("Your Character");
+ 	$("#selectCharacter" ).addClass("hide");
+ 	$("#" + selectCharacter).removeClass("inCharacterChoices character");
+ 	console.log(characterList);
+    $(characterList.toString()).appendTo("#opponentChoicesRow").addClass("inOpponentChoices opponent").removeClass("inCharacterChoices");
+	console.log(characterList)
 });
+};
+
+function chooseOpponent(){
+$("#opponentChoicesRow").on("click", (".opponent"), function() {
+	$("#opponentContainer").addClass("show");
+	$(this).appendTo("#opponentRow");
+	$(this).removeClass("inOpponentChoices");
+	$(this).addClass("inOpponent");
+	selectOpponent = this.id;
+	var index2 = characterList.indexOf("#" + selectOpponent);
+	characterList.splice(index2, 1);
+	$(characterList.toString()).removeClass("opponent");
+	$("#selectOpponent").removeClass("show");
+	$("#attackContainer").removeClass("hide");
+
+});
+};
+function attack1(){
+$("#attack1").on("click", function() {
+    selectOpponent = eval(selectOpponent);
+    selectCharacter = eval(selectCharacter);
+    selectOpponent.hp -= selectCharacter.attack1;
+    selectCharacter.attack1 += 8
+    $(selectOpponent.hpId).text(selectOpponent.hp);
+    selectCharacter.hp -= selectOpponent.counterAttack;
+    $(selectCharacter.hpId).text(selectCharacter.hp);
+    if (selectOpponent.hp <= 0) {
+    	$(selectOpponent.hpId).text("0");
+    	$(".inOpponent").hide();
+    	selectOpponent = null;
+    	$(characterList.toString()).addClass("opponent");
+
+    }
+});
+};
+
+function attack2(){
+$("#attack2").on("click", function() {
+    selectOpponent = eval(selectOpponent);
+    selectCharacter = eval(selectCharacter);
+    selectOpponent.hp -= selectCharacter.attack2;
+    selectCharacter.attack2 += 6
+   	opponentHp =selectOpponent.hp
+    $(selectOpponent.hpId).text(selectOpponent.hp);
+    selectCharacter.hp -= selectOpponent.counterAttack;
+    $(selectCharacter.hpId).text(selectCharacter.hp);
+	if (opponentHp <= 0) {
+    	$(selectOpponent.hpId).text("0");
+    	$(".inOpponent").hide();
+    	selectOpponent = null;
+    	$(characterList.toString()).addClass("opponent");
+    }   
+    if
+});
+};
 
 
 
 
-
-
-
-// var characterSelected = {};
-// var opponentSelected = {}; 
-// var bolCharClick = true;
-// for (var i = 0; i < 4; i++) {
-	
-
-// 	$((characters[i]).id).on("click", function() {
-	    
-// 	    if (bolCharClick === true && $(characters.id[i]).hasClass("inCharacterChoices")) {
-// 	    	console.log("works");
-// 	    }
-// 	})
-// }
-// $( "#mario" ).click(function(){
-// 	if  ($("#mario").hasClass("inCharacterChoices")) {
-// 		$("#selectCharacter" ).addClass("hide");
-// 		$("'character.name[" + i + "]").appendTo("#opponentChoicesRow").addClass("inOpponentChoices").removeClass("inCharacterChoices");
-// 	 	$("#selectOpponent, #opponentChoices").addClass("show");
-// 	 	$("#characterChoices").html("Your Character");
-// 	 	$("#mario").addClass("inOpponentChoices");
-// 	 	$("#mario").removeClass("inCharacterChoices");
-
-// 	 	characterSelected = characters[1];
-
-// 	}
-// 	else if ($("#mario").hasClass("inOpponentChoices")){
-// 		$("#opponentContainer").addClass("show");
-// 		$("#mario").appendTo("#opponentRow");
-// 		$("#mario").removeClass("inOpponentChoices");
-// 	 	$("#mario").addClass("inOpponent");
-// 	 	$("#selectOpponent").removeClass("show");
-// 		$("#attackContainer").removeClass("hide");
-
-// 	}
-// 	else if ($("#mario").hasClass("inOpponentChoices")){
-// 		$("#attackContainer").removeClass("hide");		
-// 		$("#mario, #luigi, #bowser, #toad").off(".click");
-// 		opponentSelected = characters[1];
-// 	}
-// 	else {
-// 		return nothing;
-// 	}
-// });
-// $( "#luigi" ).click(function(){
-// 	if  ($("#luigi").hasClass("inCharacterChoices")) {
-// 		$("#selectCharacter" ).addClass("hide");
-// 		$("#mario, #toad, #bowser").appendTo("#opponentChoicesRow").addClass("inOpponentChoices").removeClass("inCharacterChoices");
-// 	 	$("#selectOpponent, #opponentChoices").addClass("show");
-// 	 	$("#characterChoices").html("Your Character");
-// 	 	$("#luigi").addClass("inOpponentChoices");
-// 	 	$("#luigi").removeClass("inCharacterChoices");
-// 	 	characterSelected = characters[2];
-// 	}
-// 	else if ($("#luigi").hasClass("inOpponentChoices")){
-// 		$("#opponentContainer").addClass("show");
-// 		$("#luigi").appendTo("#opponentRow");
-// 		$("#luigi").removeClass("inOpponentChoices");
-// 	 	$("#luigi").addClass("inOpponent");
-// 	 	$("#selectOpponent").removeClass("show");
-// 		$("#attackContainer").removeClass("hide");
-// 	}
-// 	else if ($("#luigi").hasClass("inOpponentChoices")){
-// 		$("#attackContainer").removeClass("hide");		
-// 		$("#mario, #luigi, #bowser, #toad").off(".click");
-// 		opponentSelected = characters[2];
-// 	}
-// 	else {
-// 		return nothing;
-// 	}
-// });
-// $( "#bowser" ).click(function(){
-// 	if  ($("#bowser").hasClass("inCharacterChoices")) {
-// 		$("#selectCharacter" ).addClass("hide");
-// 		$("#mario, #luigi, #toad").appendTo("#opponentChoicesRow").addClass("inOpponentChoices").removeClass("inCharacterChoices");
-// 	 	$("#selectOpponent, #opponentChoices").addClass("show");
-// 	 	$("#characterChoices").html("Your Character");
-// 	 	$("#bowser").addClass("inOpponentChoices");
-// 	 	$("#bowser").removeClass("inCharacterChoices");
-// 	 	characterSelected = characters[3];
-// 	}
-// 	else if ($("#bowser").hasClass("inOpponentChoices")){
-// 		$("#opponentContainer").addClass("show");
-// 		$("#bowser").appendTo("#opponentRow");
-// 		$("#bowser").removeClass("inOpponentChoices");
-// 	 	$("#bowser").addClass("inOpponent");
-// 	 	$("#selectOpponent").removeClass("show");
-// 		$("#attackContainer").removeClass("hide");
-// 	}
-// 	else if ($("#bowser").hasClass("inOpponentChoices")){
-// 		$("#attackContainer").removeClass("hide");
-// 		$("#mario, #luigi, #bowser, #toad").off(".click");
-// 		opponentSelected = characters[3];	
-// 	}
-// 	else {
-// 		return nothing;
-// 	}
-// });
-// $( "#toad" ).click(function(){
-// 	if  ($("#toad").hasClass("inCharacterChoices")) {
-// 		$("#selectCharacter" ).addClass("hide");
-// 		$("#mario, #luigi, #toad").appendTo("#opponentChoicesRow").addClass("inOpponentChoices").removeClass("inCharacterChoices");
-// 	 	$("#selectOpponent, #opponentChoices").addClass("show");
-// 	 	$("#characterChoices").html("Your Character");
-// 	 	$("#toad").addClass("inOpponentChoices");
-// 	 	$("#toad").removeClass("inCharacterChoices");
-// 	 	characterSelected = characters[4];
-// 	}
-// 	else if ($("#toad").hasClass("inOpponentChoices")){
-// 		$("#opponentContainer").addClass("show");
-// 		$("#toad").appendTo("#opponentRow");
-// 		$("#toad").removeClass("inOpponentChoices");
-// 	 	$("#toad").addClass("inOpponent");
-// 	 	$("#selectOpponent").removeClass("show");
-// 		$("#attackContainer").removeClass("hide");	 	
-// 	}
-// 	else if ($("#toad").hasClass("inOpponentChoices")){
-// 		$("#attackContainer").removeClass("hide");
-// 		$("#mario, #luigi, #bowser, #toad").off(".click");
-// 		opponentSelected = characters[4];		
-// 	}
-// 	else {
-// 		return nothing;
-// 	}
-// });
-
-// console.log(characterSelected);
-
-// $("#attack1").click(function(){
-// 		opponentSelected.hp = parseInt((opponentSelected.hp - characterSelected.attack1));
-// 		characterSelected.hp = parseInt((characterSelected.hp - opponentSelected.counterattack));
-// 		$(hpId).text(ch.hp)
-// 		console.log(opponentSelected);
-// });
-
-
-// console.log(opponentSelected);
-// console.log(characterSelected);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if (bolGame === true){
+	chooseCharacter();
+	chooseOpponent();
+	attack1();
+	attack2();
+}
