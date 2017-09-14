@@ -1,92 +1,111 @@
 <!DOCTYPE html>
-	<meta charset="UTF-8"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mario RPG</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Mario RPG</title>
+<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <html>
+
 <head>
-	<title>Mario RPG</title>
+    <title>Mario RPG</title>
 </head>
+
 <body>
-	<div class="container">
-		<div class="row">
-			<div id="characterChoices" class="h2"> Characters Choices</div>	
-		</div>	
-		<div class="row">
-			<div class="col-sm-6">
-				<button id="mario">
-					<span id="marioName"></span>
-					<div class="marioImg"></div>
-					<span id="hpMario"></span>
-				</button>
-				<button id="luigi">
-					<span id="luigiName"></span>
-					<div  class="luigiImg"></div>
-					<span id="hpLuigi"></span>
-				</button>				
-				<button id="bowser">
-					<span id="bowserName"></span>
-					<div class="bowserImg"></div>
-					<span id="hpBowser"></span>
-				</button>
-				<button id="toad">
-					<span id="toadName"></span>
-					<div class="toadImg"></div>
-					<span id="hpToad"></span>
-				</button>
-			</div>
-			<div  class="col-sm-2 "></div>
-			<div class ="col-sm-2">
-				<div id="selectCharacter" class="row alert-success center-text">
-					<h2>Select a Character</h2>
-				</div>
-			
-			</div>
-			<div class="col-sm-2"></div>
-		</div>
-		<div class="row">
-			<div id="opponentChoices" class="h2 hide"> Opponent Choices</div>
-		</div>
-		<div class="row">
-			<div id="opponentChoicesRow" class="col-sm-6">
-				
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-				<div id="selectOpponent" class="row alert-danger center-text hide">
-					<h2>Select an Opponent</h2>
-				</div>					
-			</div>
-			<div class="col-sm-2"></div>
-		</div>
-		<div class="row ">
-			<div id="attackSelection" class="h2 hide"> Attack Selection</div>
-		</div>
-		<div id="attackSelectionRow" class="row hide">
-			<div class="col-sm-6">
-				<button id="attack1"></button>
-				<button id="attack2"></button>
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
-		</div>
-				<div class="row ">
-			<div id="opponent" class="h2 hide"> Opponent</div>
-		</div>
-		<div id="attackSelectionRow" class="row hide">
-			<div class="col-sm-6">
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2"></div>
-		</div>
+	<div id="winner" class="winnerImg hide"></div>
+	<div id="mainContainer" class="container hide">
+	 <div class="row">
+	     <div id="characterChoices" class="h2"> Characters Choices</div>
+	  </div>
+	  <div class="row">
+	     <div id="characterChoicesRow" class="col-sm-6">
+	         <button id="mario" class="inCharacterChoices character">
+	            <span id="marioName"></span>
+	            <div class="marioImg"></div>
+	            <span id="hpMario"></span>
+	        </button>
+	        <button id="luigi" class="inCharacterChoices character">
+	            <span id="luigiName"></span>
+	            <div class="luigiImg"></div>
+	            <span id="hpLuigi"></span>
+	        </button>
+	        <button id="bowser" class="inCharacterChoices character">
+	            <span id="bowserName"></span>
+	            <div class="bowserImg"></div>
+	            <span id="hpBowser"></span>
+	        </button>
+	        <button id="toad" class="inCharacterChoices character">
+	            <span id="toadName"></span>
+	            <div class="toadImg"></div>
+	            <span id="hpToad"></span>
+	        </button>
+	    </div>
+	    <div class="col-sm-2 "></div>
+	    <div class="col-sm-4">
+	        <div id="selectedCharacter" class="row alert-success text-center p-2">
+	            <h2>Select a Character</h2>
+	        </div>
+	    </div>
 	</div>
-	<script src="assets/javascript/script.js" type="text/javascript"></script>
+	<div class="row">
+	    <div id="opponentChoices" class="h2 hide"> Opponent Choices</div>
+	</div>
+	<div class="row">
+	    <div id="opponentChoicesRow" class="col-sm-6">
+	    </div>
+	    <div class="col-sm-2">
+	    	<div>
+	        	<button id="reset" class="hide btn btn-primary btn-lg btn-block" > RESET </button>
+	        </div>	
+	    </div>
+	    <div class="col-sm-2">
+	        <div id="selectedOpponent" class="row alert-danger center-text hide p-2">
+	            <h2>Select an Opponent</h2>   
+	        </div>
+	    </div>
+	    <div class="col-sm-2"></div>
+	</div>
+	<div id="opponentContainer" class="container hide">
+	    <div class="row ">
+	        <div id="opponent" class="h2"> Opponent</div>
+	    </div>
+	    <div class="row">
+	        <div id="opponentRow" class="col-sm-6">
+	        </div>
+	        <div class="col-sm-2"></div>
+	        <div class="col-sm-2"></div>
+	        <div class="col-sm-2"></div>
+	    </div>
+	</div>
+	<div id="attackContainer" class="container hide">
+	  <div class="row">
+	    <div id="attackSelection" class="h2"> Attack Selection</div>
+	  </div>
+	  <div id="attackSelectionRow" class="row">
+	    <div class="col-sm-6">
+	      <button class="attackButton" id="attack1">Attack 1</button>
+	      <button class="attackButton" id="attack2">Attack 2</button>
+	    </div>
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-2"></div>
+	 </div>
+	</div>
+	</div>
+
+ 	</div>
+	<div id="startContainer" class="container">
+  <div class="row">
+     <div class="col-sm-4"></div>
+     <div class="col-sm-4 ">
+        <button id="start" class="btn btn-primary btn-lg btn-block"> START
+        </button>
+      </div>
+    <div class="col-sm-4"></div>
+  </div>
+    <script src="assets/javascript/script1.js" type="text/javascript"></script>
 </body>
+
 </html>
