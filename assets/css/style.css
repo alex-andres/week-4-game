@@ -4,33 +4,44 @@ body{
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
-
-.marioImg{
-	background-image: url(../images/mario.png);
-	width: 100px;
-	height: 100px
-}
-.luigiImg{
-	background-image: url(../images/luigi.png);
-	width: 100px;
-	height: 100px
+.attackButton{
+	width: 80px;
+	height: 30px;
 }
 .bowserImg{
 	background-image: url(../images/bowser.png);
 	width: 100px;
 	height: 100px
 }
+.hide{
+	display: none;
+}
+.luigiImg{
+	background-image: url(../images/luigi.png);
+	width: 100px;
+	height: 100px
+}
+.marioImg{
+	background-image: url(../images/mario.png);
+	width: 100px;
+	height: 100px
+}
+.show{
+	display: block;
+}
 .toadImg{
 	background-image: url(../images/toad.png);
 	width: 100px;
 	height: 100px
 }
-.hide{
-	display: none;
+.winnerImg{
+	background-image: url(../images/solitaire.gif);
+	width: 100%;
+	height: 100%;
 }
-#bowserText{
-	font-back
+#selectCharacter{
+	font-size: 50%;
 }
-.show{
-	display: block;
+#startContainer{
+	margin-top: 25%;
 }
